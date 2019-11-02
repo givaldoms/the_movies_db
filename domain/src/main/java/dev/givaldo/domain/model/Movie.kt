@@ -1,6 +1,8 @@
 package dev.givaldo.domain.model
 
 data class Movie(
-    private val title: String,
-    private val posterUrl: String
+    val id: Long,
+    val title: String,
+    val description: String,
+    val posterUrl: String
 )

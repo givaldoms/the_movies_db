@@ -4,8 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
 
+    @SerializedName("id")
+    val id: Long,
+
     @SerializedName("title")
     val title: String? = "",
+
+    @SerializedName("overview")
+    val description: String? = "",
 
     @SerializedName("original_title")
     val originalTitle: String? = "",

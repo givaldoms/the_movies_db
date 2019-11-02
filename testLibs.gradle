@@ -21,4 +21,8 @@ ext {
     koinTest         = "org.koin:koin-test:$koinVersion"
     coreTesting      = "androidx.arch.core:core-testing:$coreTestVersion"
     robolectric      = "org.robolectric:robolectric:$robolectricVersion"
+
+    roomTesting      = "androidx.room:room-testing:$roomVersion"
+
+
 }

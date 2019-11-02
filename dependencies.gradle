@@ -16,11 +16,7 @@ ext {
             [configuration: "implementation", dependency: "$navigationFragment"],
             [configuration: "implementation", dependency: "$constraintLayout"],
             [configuration: "implementation", dependency: "$material"],
-            [configuration: "implementation", dependency: "$anko"],
-            [configuration: "implementation", dependency: "$firebaseCore"],
-            [configuration: "implementation", dependency: "$firebaseAnalytics"],
-            [configuration: "implementation", dependency: "$firebaseCrashlytics"],
-            [configuration: "implementation", dependency: "$firebaseVision"]
+            [configuration: "implementation", dependency: "$anko"]
     ]
 
     intentDependencies = appDependencies + [
@@ -59,6 +55,12 @@ ext {
             [configuration: "implementation", dependency: "$retrofitCoroutine"],
             [configuration: "implementation", dependency: "$httpInterceptor"],
             [configuration: "implementation", dependency: "$gsonConvertFacotory"]
+    ]
+
+    dataLocalDependencies = dataDependencies + testDataRemoteDependencies + [
+            [configuration: "implementation", dependency: "$roomRuntime"],
+            [configuration: "implementation", dependency: "$roomKtx"],
+            [configuration: "kapt", dependency: "$roomCompiler"],
     ]
 
 }

@@ -5,10 +5,12 @@ import dev.givaldo.domain.model.Movie
 
 object MovieMapper : DataRemoteMapper<MovieResponse, Movie>() {
 
-    override fun toDomain(data: MovieResponse): Movie {
+    override fun toDomain(remote: MovieResponse): Movie {
         return Movie(
-            title = data.originalTitle ?: data.title ?: "",
-            posterUrl = data.posterPath ?: ""
+            id = remote.id,
+            title = remote.originalTitle ?: remote.title ?: "",
+            posterUrl = remote.posterPath ?: "",
+            description = remote.description ?: ""
         )
     }
 

@@ -38,12 +38,10 @@ ext {
     //gson
     gsonVersion                = "2.8.5"
 
-    firebaseCoreVersion        = "17.2.0"
-    firebaseVisionVersion      = "22.0.0"
-    firebaseCrashlyticsVersion = "2.10.1"
+    roomVersion                = "2.2.1"
 
     materialVersion            = "1.0.0"
-    
+
     //libs
 
     //kotlin
@@ -83,10 +81,9 @@ ext {
     //gson
     gson                 = "com.google.code.gson:gson:$gsonVersion"
 
-    firebaseCore         = "com.google.firebase:firebase-core:$firebaseCoreVersion"
-    firebaseAnalytics    = "com.google.firebase:firebase-analytics:$firebaseCoreVersion"
-    firebaseVision       = "com.google.firebase:firebase-ml-vision:$firebaseVisionVersion"
-    firebaseCrashlytics  = "com.crashlytics.sdk.android:crashlytics:$firebaseCrashlyticsVersion"
+    roomRuntime          = "androidx.room:room-runtime:$roomVersion"
+    roomCompiler         = "androidx.room:room-compiler:$roomVersion"
+    roomKtx              =  "androidx.room:room-ktx:$roomVersion"
 
     material             = "com.google.android.material:material:$materialVersion"
 
