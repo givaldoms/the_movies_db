@@ -1,2 +1,2 @@
-include ':app', ':data_remote'
+include ':app', ':data_remote', ':domain'
 rootProject.name='Cubos'

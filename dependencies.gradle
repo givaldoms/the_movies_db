@@ -53,7 +53,7 @@ ext {
 
     dataDependencies = commonsDependencies
 
-    dataRemoteDependencies = dataDependencies + [
+    dataRemoteDependencies = dataDependencies + testDataRemoteDependencies + [
             [configuration: "implementation", dependency: "$gson"],
             [configuration: "implementation", dependency: "$retrofit2"],
             [configuration: "implementation", dependency: "$retrofitCoroutine"],
