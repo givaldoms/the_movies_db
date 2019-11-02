@@ -1,0 +1,64 @@
+ext {
+    commonsDependencies = [
+            [configuration: "implementation", dependency: fileTree(dir: 'libs', include: ['*.jar'])],
+            [configuration: "implementation", dependency: "$kotlin"],
+            [configuration: "implementation", dependency: "$kotlinReflect"],
+            [configuration: "implementation", dependency: "$coroutine"],
+            [configuration: "implementation", dependency: "$androidKtxCore"]
+    ]
+
+    appDependencies = commonsDependencies + testAppDependencies + [
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$httpInterceptor"],
+            [configuration: "implementation", dependency: "$viewModelRuntime"],
+            [configuration: "implementation", dependency: "$navigationUi"],
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$navigationFragment"],
+            [configuration: "implementation", dependency: "$constraintLayout"],
+            [configuration: "implementation", dependency: "$material"],
+            [configuration: "implementation", dependency: "$anko"],
+            [configuration: "implementation", dependency: "$firebaseCore"],
+            [configuration: "implementation", dependency: "$firebaseAnalytics"],
+            [configuration: "implementation", dependency: "$firebaseCrashlytics"],
+            [configuration: "implementation", dependency: "$firebaseVision"]
+    ]
+
+    intentDependencies = appDependencies + [
+            [configuration: "implementation", dependency: "$navigationFragment"],
+            [configuration: "implementation", dependency: "$navigationUi"]
+    ]
+
+    diDependencies = commonsDependencies + [
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$koinScope"],
+            [configuration: "implementation", dependency: "$viewModel"],
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$gson"],
+            [configuration: "implementation", dependency: "$retrofit2"],
+            [configuration: "implementation", dependency: "$retrofitCoroutine"],
+            [configuration: "implementation", dependency: "$httpInterceptor"],
+            [configuration: "implementation", dependency: "$gsonConvertFacotory"]
+    ]
+
+    presentationDependencies = commonsDependencies + testPresentationDependencies + [
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$viewModel"],
+            [configuration: "implementation", dependency: "$viewModelRuntime"],
+            [configuration: "implementation", dependency: "$lifecycleXt"],
+            [configuration: "implementation", dependency: "$liveData"]
+    ]
+
+    domainDependencies = commonsDependencies + testDomainDependencies
+
+    dataDependencies = commonsDependencies
+
+    dataRemoteDependencies = dataDependencies + [
+            [configuration: "implementation", dependency: "$gson"],
+            [configuration: "implementation", dependency: "$retrofit2"],
+            [configuration: "implementation", dependency: "$retrofitCoroutine"],
+            [configuration: "implementation", dependency: "$httpInterceptor"],
+            [configuration: "implementation", dependency: "$gsonConvertFacotory"]
+    ]
+
+}

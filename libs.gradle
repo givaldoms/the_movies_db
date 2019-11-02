@@ -1,0 +1,93 @@
+ext {
+
+    androidDevApplicationId = "dev.br.com.ioasys.dmcard.contadigital"
+    androidProdApplicationId = "br.com.dmcard.contadigital"
+
+    //versions
+    androidBuildToolsVersion   = "28.0.3"
+    androidCompileSdkVersion   = 29
+    androidMinSdkVersion       = 21
+    androidTargetSdkVersion    = 28
+    androidVersionCode         = 1
+    androidVersionName         = "1.0"
+
+    //kotlin
+    coroutineVersion           = "1.2.0-alpha-2"
+    ankoVersion                = "0.10.8"
+
+    //androidx
+    appCompatVersion           = "1.1.0-beta01"
+    androidKtxCoreVersion      = "1.1.0-alpha05"
+    constraintLayoutVersion    = "2.0.0-alpha2"
+    navigationVersion          = "2.1.0-alpha05"
+
+    //androidx lifecycle
+    lifecycleVersion           = "2.2.0-alpha01"
+
+    //androidx cameraX
+    cameraXVersion             = "1.0.0-alpha01"
+
+    //koin
+    koinVersion                = "2.0.1"
+
+    //retrofit
+    retrofitVersion            = "2.5.0"
+    retrofitCoroutineVersion   = "0.9.2"
+    httpIntercptorVersion      = "3.8.0"
+
+    //gson
+    gsonVersion                = "2.8.5"
+
+    firebaseCoreVersion        = "17.2.0"
+    firebaseVisionVersion      = "22.0.0"
+    firebaseCrashlyticsVersion = "2.10.1"
+
+    materialVersion            = "1.0.0"
+    
+    //libs
+
+    //kotlin
+    kotlin               = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    kotlinReflect        = "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+    coroutine            = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    anko                 = "org.jetbrains.anko:anko-commons:$ankoVersion"
+
+    //androidx
+    appCompat            = "androidx.appcompat:appcompat:$appCompatVersion"
+    androidKtxCore       = "androidx.core:core-ktx:$androidKtxCoreVersion"
+    constraintLayout     = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    navigationUi         = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    navigationFragment   = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+
+    //androidx lifecycle
+    viewModelRuntime     = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    viewModel            = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    lifecycleXt          = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    liveData             = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    //androidx cameraX
+    cameraX              = "androidx.camera:camera-camera2:${cameraXVersion}"
+    cameraXCore          = "androidx.camera:camera-core:${cameraXVersion}"
+
+    //koin
+    koinAndroid          = "org.koin:koin-android:$koinVersion"
+    koinScope            = "org.koin:koin-androidx-scope:$koinVersion"
+    koinViewModel        = "org.koin:koin-androidx-viewmodel:$koinVersion"
+
+    //retrofit
+    retrofit2            = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    retrofitCoroutine    = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutineVersion"
+    httpInterceptor      = "com.squareup.okhttp3:logging-interceptor:$httpIntercptorVersion"
+    gsonConvertFacotory  = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    //gson
+    gson                 = "com.google.code.gson:gson:$gsonVersion"
+
+    firebaseCore         = "com.google.firebase:firebase-core:$firebaseCoreVersion"
+    firebaseAnalytics    = "com.google.firebase:firebase-analytics:$firebaseCoreVersion"
+    firebaseVision       = "com.google.firebase:firebase-ml-vision:$firebaseVisionVersion"
+    firebaseCrashlytics  = "com.crashlytics.sdk.android:crashlytics:$firebaseCrashlyticsVersion"
+
+    material             = "com.google.android.material:material:$materialVersion"
+
+}

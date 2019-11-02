@@ -1,0 +1,38 @@
+ext {
+    testCommonsDependencies = [
+            [configuration: "testImplementation", dependency: "$junit"],
+            [configuration: "testImplementation", dependency: "$mockitoKotlin"],
+            [configuration: "testImplementation", dependency: "$kotlinJunit"],
+            [configuration: "testImplementation", dependency: "$koinTest"]
+    ]
+
+    testAppDependencies = testCommonsDependencies + [
+
+    ]
+
+    testPresentationDependencies = testCommonsDependencies + [
+            [configuration: "testImplementation", dependency: "$coreTesting"]
+    ]
+
+    testIntentDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDomainDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDataDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDataRemoteDependencies = testCommonsDependencies + [
+
+    ]
+
+    testDataLocalDependencies = testCommonsDependencies + [
+
+    ]
+
+
+}

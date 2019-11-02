@@ -1,0 +1,2 @@
+include ':app', ':data_remote'
+rootProject.name='Cubos'

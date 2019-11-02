@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    dataRemoteDependencies.each { add(it.configuration, it.dependency, it.options) }
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
