@@ -1,32 +1,29 @@
 package dev.givaldo.data_remote.datasource
 
-import dev.givaldo.data_remote.model.Genre
-import dev.givaldo.data_remote.model.Movie
+import dev.givaldo.data.datasource.MovieDataSource
+import dev.givaldo.data_remote.mapper.MovieMapper
 import dev.givaldo.data_remote.service.MovieWebService
-import kotlinx.coroutines.Dispatchers
+import dev.givaldo.domain.model.Movie
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.flowOn
 
+@FlowPreview
 class MovieDataSourceImpl (
     private val movieWebService: MovieWebService
-) {
+): MovieDataSource {
 
-    @FlowPreview
-    fun getMovies(
-        genre: Genre,
-        query: String? = null,
+    override fun getMovies(
+        genreId: Int,
+        query: String?,
         page: Int
     ): Flow<List<Movie>> = flow {
-
         if (query == null) {
-            emit(movieWebService.getMovieList(genre.id, page))
+            emit(movieWebService.getMovieList(genreId, page).map { MovieMapper.toDomain(it) })
         } else {
-            emit(movieWebService.getMovieSearchList(query, page))
+            emit(movieWebService.getMovieSearchList(query, page).map { MovieMapper.toDomain(it) })
         }
 
-    }.flowOn(Dispatchers.IO)
+    }
 
 }

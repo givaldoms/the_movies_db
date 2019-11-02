@@ -1,6 +1,6 @@
 package dev.givaldo.domain.model
 
-data class Category(
+data class Genre(
     val title: String,
     val id: Int
 )

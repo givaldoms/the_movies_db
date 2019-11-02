@@ -2,7 +2,7 @@ package dev.givaldo.data_remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class MovieResponse(
 
     @SerializedName("title")
     val title: String? = "",

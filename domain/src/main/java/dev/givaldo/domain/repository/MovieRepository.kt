@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface MovieRepository {
 
     suspend fun getMovies(
-        categoryId: Int,
+        genreId: Int,
         query: String = ""
     ): Flow<List<Movie>>
 
