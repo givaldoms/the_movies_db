@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import dev.givaldo.data_local.dao.MovieDaoConstants.GET_ALL_QUERY
+import dev.givaldo.data_local.core.TablesName.MOVIE_TABLE_NAME
 import dev.givaldo.data_local.model.MovieEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -15,12 +15,8 @@ interface MovieDao {
     fun getAll(): Flow<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(plants: List<MovieEntity>)
+    suspend fun insertAll(movies: List<MovieEntity>)
 
 }
 
-object MovieDaoConstants {
-
-    const val GET_ALL_QUERY = "SELECT * FROM movie"
-
-}
+private const val GET_ALL_QUERY = "SELECT * FROM $MOVIE_TABLE_NAME"

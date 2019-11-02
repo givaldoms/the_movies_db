@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 @FlowPreview
 abstract class UseCase<T, in Params> {
 
-    abstract suspend operator fun invoke(params: Params?): Flow<T>
+    abstract suspend operator fun invoke(params: Params? = null): Flow<T>
 
 }

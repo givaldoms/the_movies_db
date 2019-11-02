@@ -1,0 +1,6 @@
+apply from: "$rootProject.projectDir/android-common.gradle"
+
+dependencies {
+    implementation project(':domain')
+    presentationDependencies.each { add(it.configuration, it.dependency, it.options) }
+}

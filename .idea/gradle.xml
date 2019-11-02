@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/data_local" />
             <option value="$PROJECT_DIR$/data_remote" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/presentation" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

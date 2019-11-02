@@ -3,6 +3,7 @@ package dev.givaldo.data_remote.datasource
 import dev.givaldo.data.datasource.remote.MovieRemoteDataSource
 import dev.givaldo.data_remote.mapper.MovieMapper
 import dev.givaldo.data_remote.service.MovieWebService
+import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.model.Movie
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +15,7 @@ class MovieDataSourceImpl (
 ): MovieRemoteDataSource {
 
     override fun getMovies(
-        genreId: Int,
+        genreId: Long,
         query: String?,
         page: Int
     ): Flow<List<Movie>> = flow {
@@ -26,4 +27,7 @@ class MovieDataSourceImpl (
 
     }
 
+    override fun getGenres(): Flow<List<Genre>> = flow {
+         emit(movieWebService.getGenreList())
+    }
 }
