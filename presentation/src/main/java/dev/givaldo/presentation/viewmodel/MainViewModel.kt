@@ -1,34 +1,21 @@
 package dev.givaldo.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
 import dev.givaldo.domain.interactor.movie.GetGenres
-import dev.givaldo.domain.interactor.movie.GetMovies
-import dev.givaldo.domain.model.Movie
+import dev.givaldo.presentation.extensions.asLiveData
+import dev.givaldo.presentation.mapper.GenreBindingMapper
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 @FlowPreview
-class MainViewModel : ViewModel() {
+class MainViewModel : ViewModel(), KoinComponent {
 
-    private val getMovies = GetMovies(TODO())
-    private val getGenres = GetGenres(TODO())
+    private val getGenres: GetGenres by inject()
 
-    private val moviesLiveData: LiveData<List<Movie>> = liveData {
-        getMovies().asLiveData()
-    }
-
-    private val genresLiveData: LiveData<List<GetGenres>> = liveData {
-        getGenres().asLiveData()
-    }
-
+    val genresLiveData = getGenres().map {
+        GenreBindingMapper.fromDomain(it)
+    }.asLiveData()
 }
 
-@FlowPreview
-private fun <T> Flow<T>.asLiveData(): LiveData<T> = liveData {
-    collect {
-        emit(it)
-    }
-}

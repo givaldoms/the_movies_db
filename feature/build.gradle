@@ -1,0 +1,11 @@
+apply from: "$rootProject.projectDir/android-common.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+
+dependencies {
+    implementation project(':presentation')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    appDependencies.each { add(it.configuration, it.dependency, it.options) }
+}

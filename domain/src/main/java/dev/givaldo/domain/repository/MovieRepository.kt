@@ -8,11 +8,16 @@ import kotlinx.coroutines.flow.Flow
 @FlowPreview
 interface MovieRepository {
 
-    suspend fun getMovies(
+    fun getMovies(
         genreId: Long,
-        query: String = ""
+        page: Int
     ): Flow<List<Movie>>
 
-    suspend fun getGenres(): Flow<List<Genre>>
+    fun getMovies(
+        query: String,
+        page: Int
+    ): Flow<List<Movie>>
+
+    fun getGenres(): Flow<List<Genre>>
 
 }

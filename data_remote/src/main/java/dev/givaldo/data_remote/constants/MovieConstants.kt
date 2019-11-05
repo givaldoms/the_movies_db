@@ -7,8 +7,8 @@ object MovieConstants {
     const val GET_GENRES_URL = "genre/movie/list"
 
 
-    const val GENRES_QUERY = "with_genres"
-    const val PAGE_QUERY = "page"
-    const val QUERY_QUERY = "query"
+    const val GENRES_PATH = "with_genres"
+    const val PAGE_PATH = "page"
+    const val QUERY_PATH = "query"
 
 }

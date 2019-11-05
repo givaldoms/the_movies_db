@@ -12,7 +12,9 @@
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data_local" />
             <option value="$PROJECT_DIR$/data_remote" />
+            <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/presentation" />
           </set>
         </option>

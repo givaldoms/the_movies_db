@@ -3,7 +3,7 @@ package dev.givaldo.data_local.mapper
 import dev.givaldo.data_local.model.GenreEntity
 import dev.givaldo.domain.model.Genre
 
-object GenreMapper : DataLocalMapper<GenreEntity, Genre>() {
+object GenreMapper : DataLocalMapper<GenreEntity, Genre> {
 
     override fun toDomain(remote: GenreEntity): Genre {
         return Genre(

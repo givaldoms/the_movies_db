@@ -18,25 +18,24 @@ class MovieLocalDataSourceImpl(
     private val genreDao: GenreDao
 ) : MovieLocalDataSource {
 
-    override suspend fun getMovies(genreId: Int, query: String?, page: Int): Flow<List<Movie>> {
+    override fun getMovies(genreId: Long, query: String?): Flow<List<Movie>> {
         return movieDao.getAll().map {
             it.map { movie -> MovieMapper.toDomain(movie) }
         }
     }
 
-    override suspend fun saveMovies(list: List<Movie>): Flow<List<Movie>> {
+    override fun saveMovies(list: List<Movie>): Flow<List<Movie>> {
         movieDao.insertAll(list.map { MovieMapper.fromDomain(it) })
         return flow { emit(list) }
     }
 
-    override suspend fun getGenres(): Flow<List<Genre>> {
+    override fun getGenres(): Flow<List<Genre>> {
         return genreDao.getAll().map {
             it.map { genre -> GenreMapper.toDomain(genre) }
         }
     }
 
-    override suspend fun saveGenres(list: List<Genre>): Flow<List<Genre>> {
+    override fun saveGenres(list: List<Genre>) {
         genreDao.insertAll(list.map { GenreMapper.fromDomain(it) })
-        return flow { emit(list) }
     }
 }

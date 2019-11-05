@@ -31,8 +31,13 @@ ext {
     ]
 
     testDataLocalDependencies = testCommonsDependencies + [
-            [configuration: "testImplementation", dependency: "$roomTesting"]
-    ]
+            [configuration: "androidTestImplementation", dependency: "$roomTesting"],
+            [configuration: "androidTestImplementation", dependency: "$robolectric"],
+            [configuration: "androidTestImplementation", dependency: "$androidTestRules"],
+            [configuration: "androidTestImplementation", dependency: "$androidTestRunner"],
+            [configuration: "androidTestImplementation", dependency: "$androidJunit"],
+            [configuration: "testImplementation", dependency: "$coreTesting"]
 
+    ]
 
 }

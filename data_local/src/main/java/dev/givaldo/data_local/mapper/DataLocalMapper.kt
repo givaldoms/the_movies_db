@@ -1,9 +1,13 @@
 package dev.givaldo.data_local.mapper
 
-abstract class DataLocalMapper<L, D> {
+interface DataLocalMapper<L, D> {
 
-    abstract fun toDomain(remote: L): D
+    fun toDomain(remote: L): D
 
-    abstract fun fromDomain(domain: D): L
+    fun fromDomain(domain: D): L
+
+    fun toDomain(remote: List<L>): List<D> = remote.map { toDomain(it) }
+
+    fun fromDomain(domain: List<D>): List<L> = domain.map { fromDomain(it) }
 
 }

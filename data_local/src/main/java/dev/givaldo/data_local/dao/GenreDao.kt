@@ -15,7 +15,7 @@ interface GenreDao {
     fun getAll(): Flow<List<GenreEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(genres: List<GenreEntity>)
+    fun insertAll(genres: List<GenreEntity>)
 
 }
 

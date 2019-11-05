@@ -16,7 +16,8 @@ ext {
             [configuration: "implementation", dependency: "$navigationFragment"],
             [configuration: "implementation", dependency: "$constraintLayout"],
             [configuration: "implementation", dependency: "$material"],
-            [configuration: "implementation", dependency: "$anko"]
+            [configuration: "implementation", dependency: "$anko"],
+            [configuration: "implementation", dependency: "$picasso"]
     ]
 
     intentDependencies = appDependencies + [
@@ -33,7 +34,10 @@ ext {
             [configuration: "implementation", dependency: "$retrofit2"],
             [configuration: "implementation", dependency: "$retrofitCoroutine"],
             [configuration: "implementation", dependency: "$httpInterceptor"],
-            [configuration: "implementation", dependency: "$gsonConvertFacotory"]
+            [configuration: "implementation", dependency: "$gsonConvertFacotory"],
+            [configuration: "implementation", dependency: "$roomRuntime"],
+            [configuration: "implementation", dependency: "$roomKtx"],
+            [configuration: "kapt", dependency: "$roomCompiler"],
     ]
 
     presentationDependencies = commonsDependencies + testPresentationDependencies + [
@@ -57,7 +61,7 @@ ext {
             [configuration: "implementation", dependency: "$gsonConvertFacotory"]
     ]
 
-    dataLocalDependencies = dataDependencies + testDataRemoteDependencies + [
+    dataLocalDependencies = dataDependencies + testDataLocalDependencies + [
             [configuration: "implementation", dependency: "$roomRuntime"],
             [configuration: "implementation", dependency: "$roomKtx"],
             [configuration: "kapt", dependency: "$roomCompiler"],

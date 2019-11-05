@@ -1,7 +1,9 @@
 package dev.givaldo.data_remote.mapper
 
-abstract class DataRemoteMapper<in R, out D> {
+interface DataRemoteMapper<in R, out D> {
 
-    abstract fun toDomain(remote: R): D
+    fun toDomain(remote: R): D
+
+    fun toDomain(remote: List<R>): List<D> = remote.map { toDomain(it) }
 
 }

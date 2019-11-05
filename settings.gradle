@@ -1,2 +1,10 @@
-include ':app', ':data_remote', ':domain', ':data', ':data_local', ':presentation'
-rootProject.name='Cubos'
+include ':app', ':di'
+include ':data_remote'
+include ':domain'
+include ':data'
+include ':data_local'
+include ':presentation'
+include ':feature'
+
+
+rootProject.name = 'Cubos'                         

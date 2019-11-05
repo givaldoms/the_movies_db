@@ -7,26 +7,22 @@ import dev.givaldo.domain.model.Movie
 import dev.givaldo.domain.repository.MovieRepository
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.concatenate
-import kotlinx.coroutines.flow.onEach
 
 @FlowPreview
 class MovieRepositoryImpl(
     private val remote: MovieRemoteDataSource,
     private val local: MovieLocalDataSource
-) : MovieRepository{
+) : MovieRepository {
 
-    override suspend fun getMovies(genreId: Long, query: String): Flow<List<Movie>> {
-        return remote.getMovies(
-            genreId, query, 0
-        )
+    override fun getMovies(genreId: Long, page: Int): Flow<List<Movie>> {
+        return remote.getMovies(genreId, page)
     }
 
-    override suspend fun getGenres(): Flow<List<Genre>> {
-        remote.getGenres().onEach {
-            local.saveGenres(it)
-        }
+    override fun getMovies(query: String, page: Int): Flow<List<Movie>> {
+        return remote.getMovies(query, page)
+    }
 
-        return local.getGenres()
+    override fun getGenres(): Flow<List<Genre>> {
+        return remote.getGenres()
     }
 }

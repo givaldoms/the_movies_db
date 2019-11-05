@@ -3,7 +3,7 @@ package dev.givaldo.data_local.mapper
 import dev.givaldo.data_local.model.MovieEntity
 import dev.givaldo.domain.model.Movie
 
-object MovieMapper : DataLocalMapper<MovieEntity, Movie>() {
+object MovieMapper : DataLocalMapper<MovieEntity, Movie> {
 
     override fun toDomain(remote: MovieEntity): Movie {
         return Movie(

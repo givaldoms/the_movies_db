@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">feature</string>
+
+    <string name="search">Search</string>
+    <string name="search_movies_hint">Burcar filmes</string>
+
+    <string name="poster_transition_name">poster_transition</string>
+
+</resources>

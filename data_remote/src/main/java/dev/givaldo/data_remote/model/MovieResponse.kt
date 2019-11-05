@@ -4,18 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class MovieResponse(
 
-    @SerializedName("id")
-    val id: Long,
+    @SerializedName("page") val page: Int,
+    @SerializedName("total_results") val totalResults: Long,
+    @SerializedName("total_pages") val totalPages: Int,
+    @SerializedName("results") val movies: List<MovieApi>
 
-    @SerializedName("title")
-    val title: String? = "",
-
-    @SerializedName("overview")
-    val description: String? = "",
-
-    @SerializedName("original_title")
-    val originalTitle: String? = "",
-
-    @SerializedName("poster_path")
-    val posterPath: String? = ""
 )

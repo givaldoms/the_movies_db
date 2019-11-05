@@ -1,0 +1,13 @@
+apply from: "$rootProject.projectDir/android-common.gradle"
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation project(':data')
+    implementation project(':feature')
+    implementation project(':presentation')
+    implementation project(':data_remote')
+    implementation project(':data_local')
+    implementation project(':domain')
+
+    diDependencies.each { add(it.configuration, it.dependency, it.options) }
+}
