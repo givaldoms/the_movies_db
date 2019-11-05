@@ -1,4 +1,4 @@
-include ':app', ':di'
+include ':app', ':di', ':navigation'
 include ':data_remote'
 include ':domain'
 include ':data'

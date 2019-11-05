@@ -1,12 +1,14 @@
-package dev.givaldo.feature.main.navigation
+package dev.givaldo.navigation
 
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigator
 import dev.givaldo.feature.main.extention.navigate
 import dev.givaldo.feature.main.fragment.MainFragmentDirections
+import dev.givaldo.feature.main.navigation.MainNavigation
 import dev.givaldo.presentation.model.MovieBinding
 
-class MainNavigationImpl(private val originFragment: Fragment) : MainNavigation {
+class MainNavigationImpl(private val originFragment: Fragment) :
+    MainNavigation {
 
     override fun navigateToMovieDetail(movie: MovieBinding, extras: FragmentNavigator.Extras) {
         originFragment.navigate(
