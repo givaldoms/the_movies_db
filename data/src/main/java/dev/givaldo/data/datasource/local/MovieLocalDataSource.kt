@@ -17,5 +17,5 @@ interface MovieLocalDataSource {
 
     fun getGenres(): Flow<List<Genre>>
 
-    fun saveGenres(list: List<Genre>)
+    fun saveGenres(list: List<Genre>): Flow<List<Genre>>
 }

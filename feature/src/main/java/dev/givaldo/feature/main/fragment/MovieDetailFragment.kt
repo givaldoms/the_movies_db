@@ -35,7 +35,6 @@ class MovieDetailFragment : Fragment() {
         movieDetailImageView.setPicassoImage(navigation.movieArg.posterUrl)
         movieDetailDescriptionTextView.text = navigation.movieArg.description
         setToolbarTitle(navigation.movieArg.title)
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,9 +1,6 @@
 package dev.givaldo.data_local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import dev.givaldo.data_local.core.TablesName.GENRE_TABLE_NAME
 import dev.givaldo.data_local.model.GenreEntity
 import kotlinx.coroutines.flow.Flow
@@ -15,10 +12,8 @@ interface GenreDao {
     fun getAll(): Flow<List<GenreEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(genres: List<GenreEntity>)
+    suspend fun insertAll(genres: List<GenreEntity>)
 
 }
 
-
 private const val GET_ALL_QUERY = "SELECT * FROM $GENRE_TABLE_NAME"
-

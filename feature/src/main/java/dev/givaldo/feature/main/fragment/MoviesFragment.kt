@@ -17,10 +17,12 @@ import dev.givaldo.presentation.extensions.handle
 import dev.givaldo.presentation.model.GenreBinding
 import dev.givaldo.presentation.viewmodel.MoviesViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
+@ExperimentalCoroutinesApi
 @FlowPreview
 class MoviesFragment : Fragment() {
 

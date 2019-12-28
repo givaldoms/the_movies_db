@@ -4,11 +4,13 @@ import androidx.lifecycle.ViewModel
 import dev.givaldo.domain.interactor.movie.GetGenres
 import dev.givaldo.presentation.extensions.asLiveData
 import dev.givaldo.presentation.mapper.GenreBindingMapper
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.map
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
+@ExperimentalCoroutinesApi
 @FlowPreview
 class MainViewModel : ViewModel(), KoinComponent {
 

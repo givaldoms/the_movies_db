@@ -10,9 +10,11 @@ import dev.givaldo.data_remote.service.MovieWebService
 import dev.givaldo.data_remote.utils.WebServiceFactory
 import dev.givaldo.domain.repository.MovieRepository
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
+@InternalCoroutinesApi
 @FlowPreview
 val dataModule = module {
 

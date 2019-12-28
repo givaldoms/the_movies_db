@@ -9,6 +9,7 @@ import dev.givaldo.presentation.mapper.GenreBindingMapper
 import dev.givaldo.presentation.mapper.MoviePresentationMapper
 import dev.givaldo.presentation.model.GenreBinding
 import dev.givaldo.presentation.model.MovieBinding
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
@@ -16,6 +17,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
+@ExperimentalCoroutinesApi
 @FlowPreview
 class MoviesViewModel(
     private val genre: GenreBinding

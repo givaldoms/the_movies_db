@@ -8,9 +8,7 @@ import dev.givaldo.data_local.mapper.MovieMapper
 import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.model.Movie
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 
 @FlowPreview
 class MovieLocalDataSourceImpl(
@@ -19,9 +17,7 @@ class MovieLocalDataSourceImpl(
 ) : MovieLocalDataSource {
 
     override fun getMovies(genreId: Long, query: String?): Flow<List<Movie>> {
-        return movieDao.getAll().map {
-            it.map { movie -> MovieMapper.toDomain(movie) }
-        }
+        return movieDao.getAll().map { MovieMapper.toDomain(it) }
     }
 
     override fun saveMovies(list: List<Movie>): Flow<List<Movie>> {
@@ -31,11 +27,12 @@ class MovieLocalDataSourceImpl(
 
     override fun getGenres(): Flow<List<Genre>> {
         return genreDao.getAll().map {
-            it.map { genre -> GenreMapper.toDomain(genre) }
+            GenreMapper.toDomain(it)
         }
     }
 
-    override fun saveGenres(list: List<Genre>) {
-        genreDao.insertAll(list.map { GenreMapper.fromDomain(it) })
+    override fun saveGenres(list: List<Genre>) = flow {
+        genreDao.insertAll(GenreMapper.fromDomain(list))
+        emit(list)
     }
 }
