@@ -7,7 +7,7 @@ object MovieMapper : DataLocalMapper<MovieEntity, Movie> {
 
     override fun toDomain(remote: MovieEntity): Movie {
         return Movie(
-            id = remote.id,
+            id = remote.movieId,
             title = remote.title,
             description = remote.description,
             posterUrl = remote.posterPath
@@ -17,7 +17,7 @@ object MovieMapper : DataLocalMapper<MovieEntity, Movie> {
 
     override fun fromDomain(domain: Movie): MovieEntity {
         return MovieEntity(
-            id = domain.id,
+            movieId = domain.id,
             title = domain.title,
             posterPath = domain.posterUrl,
             description = domain.description

@@ -2,10 +2,8 @@ package dev.givaldo.data.datasource.local
 
 import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.model.Movie
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
-@FlowPreview
 interface MovieLocalDataSource {
 
     fun getMovies(

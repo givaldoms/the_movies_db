@@ -1,6 +1,4 @@
 apply from: "$rootProject.projectDir/android-common.gradle"
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 dependencies {
     implementation project(':presentation')

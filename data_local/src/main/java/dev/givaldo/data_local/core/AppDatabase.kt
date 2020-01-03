@@ -10,7 +10,11 @@ import dev.givaldo.data_local.dao.MovieDao
 import dev.givaldo.data_local.model.GenreEntity
 import dev.givaldo.data_local.model.MovieEntity
 
-@Database(entities = [MovieEntity::class, GenreEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [MovieEntity::class, GenreEntity::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao

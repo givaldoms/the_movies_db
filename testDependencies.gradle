@@ -1,8 +1,6 @@
 ext {
     testCommonsDependencies = [
-            [configuration: "testImplementation", dependency: "$junit"],
-            [configuration: "testImplementation", dependency: "$mockitoKotlin"],
-            [configuration: "testImplementation", dependency: "$kotlinJunit"],
+            [configuration: "testImplementation", dependency: "$mockk"],
             [configuration: "testImplementation", dependency: "$koinTest"]
     ]
 
@@ -11,7 +9,6 @@ ext {
     ]
 
     testPresentationDependencies = testCommonsDependencies + [
-            [configuration: "testImplementation", dependency: "$coreTesting"]
     ]
 
     testIntentDependencies = testCommonsDependencies + [
@@ -31,12 +28,14 @@ ext {
     ]
 
     testDataLocalDependencies = testCommonsDependencies + [
+            [configuration: "androidTestImplementation", dependency: "$junitJupiterParams"],
+            [configuration: "androidTestImplementation", dependency: "$junitJupiterApi"],
+            [configuration: "testRuntimeOnly", dependency: "$junitVintageEngine"],
+            [configuration: "testRuntimeOnly", dependency: "$junitJupiterEngine"],
             [configuration: "androidTestImplementation", dependency: "$roomTesting"],
-            [configuration: "androidTestImplementation", dependency: "$robolectric"],
             [configuration: "androidTestImplementation", dependency: "$androidTestRules"],
             [configuration: "androidTestImplementation", dependency: "$androidTestRunner"],
-            [configuration: "androidTestImplementation", dependency: "$androidJunit"],
-            [configuration: "testImplementation", dependency: "$coreTesting"]
+            [configuration: "androidTestImplementation", dependency: "$androidCoreTest"]
 
     ]
 

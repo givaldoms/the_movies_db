@@ -6,10 +6,8 @@ import dev.givaldo.domain.exception.MissingParamsException
 import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.model.Movie
 import dev.givaldo.domain.repository.MovieRepository
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 
-@FlowPreview
 class GetMovies(
     private val movieRepository: MovieRepository
 ) : UseCase<List<Movie>, GetMovies.Params>() {

@@ -1,13 +1,23 @@
 package dev.givaldo.data_local.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import dev.givaldo.data_local.core.TablesName.MOVIE_TABLE_NAME
 
-@Entity(tableName = MOVIE_TABLE_NAME)
+@Entity(
+    tableName = MovieEntity.TABLE_NAME,
+    indices = [Index(MovieEntity.ID)]
+)
 data class MovieEntity(
-    @PrimaryKey(autoGenerate = false) val id: Long,
+    @PrimaryKey(autoGenerate = false) val movieId: Long,
     val title: String,
     val description: String,
     val posterPath: String
-)
+) {
+
+    companion object {
+        const val ID = "movieId"
+        const val TABLE_NAME = "movie"
+    }
+
+}

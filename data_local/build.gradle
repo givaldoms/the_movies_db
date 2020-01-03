@@ -5,3 +5,4 @@ dependencies {
     implementation project(':data')
     dataLocalDependencies.each { add(it.configuration, it.dependency, it.options) }
 }
+

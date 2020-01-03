@@ -17,10 +17,8 @@ import dev.givaldo.feature.main.navigation.MovieSearchNavigation
 import dev.givaldo.presentation.extensions.handle
 import dev.givaldo.presentation.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_movie_search.*
-import kotlinx.coroutines.FlowPreview
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@FlowPreview
 class MovieSearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModel()

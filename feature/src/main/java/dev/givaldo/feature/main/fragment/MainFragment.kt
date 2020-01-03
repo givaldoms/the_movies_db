@@ -20,10 +20,8 @@ import dev.givaldo.presentation.model.MovieBinding
 import dev.givaldo.presentation.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.coroutines.FlowPreview
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@FlowPreview
 class MainFragment : Fragment(), MoviesFragmentListener {
 
     private val navigation: MainNavigation by navigator()

@@ -7,14 +7,14 @@ object GenreMapper : DataLocalMapper<GenreEntity, Genre> {
 
     override fun toDomain(remote: GenreEntity): Genre {
         return Genre(
-            id = remote.id,
+            id = remote.genreId,
             title = remote.title
         )
     }
 
     override fun fromDomain(domain: Genre): GenreEntity {
         return GenreEntity(
-            id = domain.id,
+            genreId = domain.id,
             title = domain.title
         )
     }

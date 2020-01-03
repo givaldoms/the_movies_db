@@ -1,21 +1,20 @@
 package dev.givaldo.di
 
 import dev.givaldo.data.datasource.local.MovieLocalDataSource
+import dev.givaldo.data.datasource.remote.GenreRemoteDataSource
 import dev.givaldo.data.datasource.remote.MovieRemoteDataSource
 import dev.givaldo.data.repository.MovieRepositoryImpl
 import dev.givaldo.data_local.core.AppDatabase
 import dev.givaldo.data_local.datasource.MovieLocalDataSourceImpl
+import dev.givaldo.data_remote.datasource.GenreRemoteDataSourceImpl
 import dev.givaldo.data_remote.datasource.MovieRemoteDataSourceImpl
+import dev.givaldo.data_remote.service.GenreWebService
 import dev.givaldo.data_remote.service.MovieWebService
 import dev.givaldo.data_remote.utils.WebServiceFactory
 import dev.givaldo.domain.repository.MovieRepository
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
-@InternalCoroutinesApi
-@FlowPreview
 val dataModule = module {
 
     single {
@@ -33,6 +32,9 @@ val dataModule = module {
     single {
         WebServiceFactory.createWebService<MovieWebService>()
     }
+    single {
+        WebServiceFactory.createWebService<GenreWebService>()
+    }
 
     single {
         MovieLocalDataSourceImpl(
@@ -48,9 +50,16 @@ val dataModule = module {
     }
 
     single {
+        GenreRemoteDataSourceImpl(
+            genreWebService = get()
+        ) as GenreRemoteDataSource
+    }
+
+    single {
         MovieRepositoryImpl(
             local = get(),
-            remote = get()
+            remote = get(),
+            genreRemoteDataSource = get()
         ) as MovieRepository
     }
 

@@ -1,7 +1,7 @@
 ext {
 
-    androidDevApplicationId = "dev.br.com.ioasys.dmcard.contadigital"
-    androidProdApplicationId = "br.com.dmcard.contadigital"
+    androidDevApplicationId = "br.com.givaldoms.movies_dev"
+    androidProdApplicationId = "br.com.givaldoms.movies"
 
     //versions
     androidBuildToolsVersion   = "28.0.3"
@@ -16,18 +16,16 @@ ext {
     ankoVersion                = "0.10.8"
 
     //androidx
-    appCompatVersion           = "1.1.0-beta01"
-    androidKtxCoreVersion      = "1.1.0-alpha05"
-    constraintLayoutVersion    = "2.0.0-alpha2"
-    navigationVersion          = "2.1.0-alpha05"
+    appCompatVersion           = "1.1.0"
+    androidKtxCoreVersion      = "1.1.0"
+    constraintLayoutVersion    = "1.1.3"
+    navigationVersion          = "2.1.0"
 
     //androidx lifecycle
-    lifecycleVersion           = "2.2.0-alpha01"
+    lifecycleVersion           = "2.2.0-rc03"
 
     //androidx cameraX
     cameraXVersion             = "1.0.0-alpha01"
-
-    //koin
     koinVersion                = "2.0.1"
 
     //retrofit
@@ -35,13 +33,9 @@ ext {
     retrofitCoroutineVersion   = "0.9.2"
     httpIntercptorVersion      = "3.8.0"
 
-    //gson
     gsonVersion                = "2.8.5"
-
-    roomVersion                = "2.2.1"
-
+    roomVersion                = "2.2.3"
     materialVersion            = "1.0.0"
-
     picassoVersion             = "2.71828"
 
     //libs
@@ -80,15 +74,11 @@ ext {
     httpInterceptor      = "com.squareup.okhttp3:logging-interceptor:$httpIntercptorVersion"
     gsonConvertFacotory  = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-    //gson
     gson                 = "com.google.code.gson:gson:$gsonVersion"
-
     roomRuntime          = "androidx.room:room-runtime:$roomVersion"
     roomCompiler         = "androidx.room:room-compiler:$roomVersion"
     roomKtx              =  "androidx.room:room-ktx:$roomVersion"
 
     material             = "com.google.android.material:material:$materialVersion"
     picasso              = "com.squareup.picasso:picasso:$picassoVersion"
-
-
 }

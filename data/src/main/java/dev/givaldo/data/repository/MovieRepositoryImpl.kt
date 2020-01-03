@@ -1,18 +1,19 @@
 package dev.givaldo.data.repository
 
 import dev.givaldo.data.datasource.local.MovieLocalDataSource
+import dev.givaldo.data.datasource.remote.GenreRemoteDataSource
 import dev.givaldo.data.datasource.remote.MovieRemoteDataSource
 import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.model.Movie
 import dev.givaldo.domain.repository.MovieRepository
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.single
 
-@InternalCoroutinesApi
-@FlowPreview
 class MovieRepositoryImpl(
     private val remote: MovieRemoteDataSource,
+    private val genreRemoteDataSource: GenreRemoteDataSource,
     private val local: MovieLocalDataSource
 ) : MovieRepository {
 
@@ -25,9 +26,12 @@ class MovieRepositoryImpl(
     }
 
     override fun getGenres(): Flow<List<Genre>> = flow {
-        local.getGenres().collect(this)
+        val remote = genreRemoteDataSource.getGenres().single()
+        local.saveGenres(remote).single()
 
-        val remote = remote.getGenres().single()
-        local.saveGenres(remote).collect(this)
+        local.getGenres().collect {
+            emit(it)
+        }
+
     }
 }

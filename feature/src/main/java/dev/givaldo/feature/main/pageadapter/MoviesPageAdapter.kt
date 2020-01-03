@@ -5,11 +5,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 import dev.givaldo.feature.main.fragment.MoviesFragment
 import dev.givaldo.feature.main.util.MoviesFragmentListener
 import dev.givaldo.presentation.model.GenreBinding
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 
-@ExperimentalCoroutinesApi
-@FlowPreview
 class MoviesPageAdapter(fragmentManager: FragmentManager, val listener: MoviesFragmentListener) :
     FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

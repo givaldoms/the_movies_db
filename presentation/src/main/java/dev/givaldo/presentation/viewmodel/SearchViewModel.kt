@@ -7,14 +7,12 @@ import androidx.lifecycle.viewModelScope
 import dev.givaldo.domain.interactor.movie.GetMovies
 import dev.givaldo.presentation.mapper.MoviePresentationMapper
 import dev.givaldo.presentation.model.MovieBinding
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-@FlowPreview
 class SearchViewModel : ViewModel(), KoinComponent {
 
     private val getMovies: GetMovies by inject()
