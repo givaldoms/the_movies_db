@@ -4,39 +4,28 @@ ext {
             [configuration: "testImplementation", dependency: "$koinTest"]
     ]
 
-    testAppDependencies = testCommonsDependencies + [
-
-    ]
-
-    testPresentationDependencies = testCommonsDependencies + [
-    ]
-
-    testIntentDependencies = testCommonsDependencies + [
-
-    ]
-
-    testDomainDependencies = testCommonsDependencies + [
-
-    ]
-
-    testDataDependencies = testCommonsDependencies + [
-
-    ]
-
-    testDataRemoteDependencies = testCommonsDependencies + [
-
-    ]
-
-    testDataLocalDependencies = testCommonsDependencies + [
-            [configuration: "androidTestImplementation", dependency: "$junitJupiterParams"],
-            [configuration: "androidTestImplementation", dependency: "$junitJupiterApi"],
-            [configuration: "testRuntimeOnly", dependency: "$junitVintageEngine"],
-            [configuration: "testRuntimeOnly", dependency: "$junitJupiterEngine"],
+    androidTestCommonsDependencies = testCommonsDependencies + [
+            [configuration: "androidTestRuntimeOnly", dependency: "$androidJunitRunner"],
+            [configuration: "androidTestImplementation", dependency: "$androidJunit"],
+            [configuration: "androidTestImplementation", dependency: "$junit"],
             [configuration: "androidTestImplementation", dependency: "$roomTesting"],
-            [configuration: "androidTestImplementation", dependency: "$androidTestRules"],
             [configuration: "androidTestImplementation", dependency: "$androidTestRunner"],
             [configuration: "androidTestImplementation", dependency: "$androidCoreTest"]
-
     ]
 
+    testAppDependencies = androidTestCommonsDependencies
+
+    testPresentationDependencies = androidTestCommonsDependencies
+
+    testIntentDependencies = androidTestCommonsDependencies
+
+    testDomainDependencies = testCommonsDependencies
+
+    testDiDependencies = androidTestCommonsDependencies
+
+    testDataDependencies = testCommonsDependencies
+
+    testDataRemoteDependencies = testCommonsDependencies
+
+    testDataLocalDependencies = androidTestCommonsDependencies
 }

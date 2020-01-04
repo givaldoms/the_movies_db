@@ -6,8 +6,8 @@ ext {
     //versions
     androidBuildToolsVersion   = "28.0.3"
     androidCompileSdkVersion   = 29
-    androidMinSdkVersion       = 21
-    androidTargetSdkVersion    = 28
+    androidMinSdkVersion       = 26
+    androidTargetSdkVersion    = 29
     androidVersionCode         = 1
     androidVersionName         = "1.0"
 

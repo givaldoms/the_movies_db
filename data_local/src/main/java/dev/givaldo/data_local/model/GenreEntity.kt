@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
     indices = [Index(GenreEntity.ID)]
 )
 data class GenreEntity(
-    @PrimaryKey val genreId: Long,
+    @PrimaryKey(autoGenerate = false) val genreId: Long,
     val title: String
 ) {
     companion object {

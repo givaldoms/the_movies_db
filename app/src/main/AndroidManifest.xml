@@ -15,6 +15,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
+        <uses-library
+            android:name="android.test.runner"
+            android:required="false" />
+
         <activity
             android:name="dev.givaldo.feature.main.AppActivity"
             android:windowSoftInputMode="adjustResize">

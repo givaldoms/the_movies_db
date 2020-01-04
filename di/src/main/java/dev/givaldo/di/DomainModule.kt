@@ -7,7 +7,7 @@ import org.koin.dsl.module
 val domainModule = module {
 
     factory {
-        GetGenres(movieRepository = get())
+        GetGenres(genreRepository = get())
     }
 
     factory {

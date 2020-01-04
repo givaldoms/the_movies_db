@@ -25,7 +25,7 @@ ext {
             [configuration: "implementation", dependency: "$navigationUi"]
     ]
 
-    diDependencies = commonsDependencies + [
+    diDependencies = testDiDependencies + commonsDependencies + [
             [configuration: "implementation", dependency: "$appCompat"],
             [configuration: "implementation", dependency: "$koinScope"],
             [configuration: "implementation", dependency: "$viewModel"],
