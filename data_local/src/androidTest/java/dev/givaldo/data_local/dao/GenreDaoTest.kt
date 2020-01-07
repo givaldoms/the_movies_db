@@ -6,7 +6,9 @@ import androidx.test.core.app.ApplicationProvider
 import dev.givaldo.data_local.core.AppDatabase
 import dev.givaldo.data_local.factory.GenreEntityFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -35,25 +37,44 @@ class GenreDaoTest {
     }
 
     @Test
-    fun getAllWhenEmptyReturnsEmpty() = runBlocking {
+    fun givenNoneListReturnsEmpty() = runBlocking {
         database.clearAllTables()
 
         val genres = GenreEntityFactory.makeDumbList(0)
 
-        genreDao.getAll().take(1).collect {
+        genreDao.getAll().test {
             Assertions.assertIterableEquals(it, genres)
         }
     }
 
     @Test
-    fun getAllReturnsCorrectValues() = runBlocking {
+    fun givenAGenreListInsertAllValues() = runBlocking {
         val genres = GenreEntityFactory.makeDumbList().sortedBy { it.genreId }
 
         genreDao.insertAll(genres)
 
-        genreDao.getAll().take(1).collect {
+        genreDao.getAll().test {
             Assertions.assertIterableEquals(it, genres)
         }
     }
 
+    @Test
+    fun givenAGenreListAndDeleteHerReturnsEmpty() = runBlocking {
+        val genres = GenreEntityFactory.makeDumbList().sortedBy { it.genreId }
+
+        genreDao.insertAll(genres)
+        genreDao.deleteAll(genres)
+
+        genreDao.getAll().test {
+            Assertions.assertIterableEquals(it, genres)
+        }
+    }
+
+    private fun <T> Flow<T>.test(count: Int = 0, onCollect: (T) -> Any) {
+        flow<T> {
+            take(count).collect {
+                onCollect(it)
+            }
+        }
+    }
 }
