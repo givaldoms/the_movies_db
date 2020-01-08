@@ -22,8 +22,10 @@ class MovieLocalDataSourceImpl(
     }
 
     override fun saveMovies(list: List<Movie>): Flow<List<Movie>> {
-        movieDao.insertAll(list.map { MovieMapper.fromDomain(it) })
-        return flow { emit(list) }
+        return flow {
+            movieDao.insertAll(list.map { MovieMapper.fromDomain(it) })
+            emit(list)
+        }
     }
 
     override fun getGenres(): Flow<List<Genre>> {

@@ -1,4 +1,4 @@
-package dev.givaldo.data_local.model
+package dev.givaldo.data_local.model.entity
 
 import androidx.room.Entity
 import androidx.room.Index

@@ -1,7 +1,7 @@
 package dev.givaldo.data_local.dao
 
 import androidx.room.*
-import dev.givaldo.data_local.model.GenreEntity
+import dev.givaldo.data_local.model.entity.GenreEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -11,7 +11,10 @@ interface GenreDao {
     fun getAll(): Flow<List<GenreEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(genres: List<GenreEntity>)
+    suspend fun insert(genres: GenreEntity): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(genres: List<GenreEntity>): List<Long>
 
     @Delete
     suspend fun deleteAll(genres: List<GenreEntity>)

@@ -1,12 +1,11 @@
-package dev.givaldo.data_local.model
+package dev.givaldo.data_local.model.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
-import dev.givaldo.data_local.model.GenreMovieCrossRef.Companion.TABLE_NAME
 
 @Entity(
-    tableName = TABLE_NAME,
+    tableName = GenreMovieCrossRef.TABLE_NAME,
     primaryKeys = [MovieEntity.ID, GenreEntity.ID],
     indices = [Index(MovieEntity.ID, GenreEntity.ID)]
 )

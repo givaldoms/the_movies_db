@@ -5,17 +5,12 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import dev.givaldo.data_local.core.AppDatabase
 import dev.givaldo.data_local.factory.GenreEntityFactory
+import dev.givaldo.data_local.factory.PrimitiveDataFactory
+import dev.givaldo.data_local.model.entity.GenreEntity
+import dev.givaldo.data_local.utils.test
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.take
 import kotlinx.coroutines.runBlocking
-import org.junit.After
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.BeforeAll
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.*
 
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -31,14 +26,18 @@ class GenreDaoTest {
         genreDao = database.genreDao()
     }
 
-    @After
+    @AfterAll
     fun closeDatabase() {
         database.close()
     }
 
-    @Test
-    fun givenNoneListReturnsEmpty() = runBlocking {
+    @BeforeEach
+    fun resetDatabase() {
         database.clearAllTables()
+    }
+
+    @Test
+    fun givenAEmptyListReturnsEmpty() = runBlocking {
 
         val genres = GenreEntityFactory.makeDumbList(0)
 
@@ -66,15 +65,29 @@ class GenreDaoTest {
         genreDao.deleteAll(genres)
 
         genreDao.getAll().test {
-            Assertions.assertIterableEquals(it, genres)
+            Assertions.assertEquals(it, listOf<GenreEntity>())
         }
     }
 
-    private fun <T> Flow<T>.test(count: Int = 0, onCollect: (T) -> Any) {
-        flow<T> {
-            take(count).collect {
-                onCollect(it)
-            }
+    @Test
+    fun givenAExitingGenreListDatabaseValuesAreReplaced() = runBlocking {
+        val genres = GenreEntityFactory.makeDumbList().sortedBy { it.genreId }
+        val newGenres = genres.map {
+            it.copy(
+                it.genreId,
+                PrimitiveDataFactory.makeDumbString()
+            )
+        }
+
+        val ids = genreDao.insertAll(genres)
+        Assertions.assertTrue(ids.none { it == -1L })
+
+        val newids = genreDao.insertAll(newGenres)
+        Assertions.assertTrue(newids.none { it == -1L })
+
+        genreDao.getAll().test {
+            Assertions.assertIterableEquals(it, newGenres)
         }
     }
+
 }

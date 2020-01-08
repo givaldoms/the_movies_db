@@ -1,6 +1,6 @@
 package dev.givaldo.data_local.factory
 
-import dev.givaldo.data_local.model.GenreEntity
+import dev.givaldo.data_local.model.entity.GenreEntity
 
 object GenreEntityFactory : EntityFactory<GenreEntity> {
 
@@ -10,4 +10,5 @@ object GenreEntityFactory : EntityFactory<GenreEntity> {
             title = PrimitiveDataFactory.makeDumbString()
         )
     }
+
 }

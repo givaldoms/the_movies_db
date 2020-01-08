@@ -1,6 +1,6 @@
 package dev.givaldo.data_local.mapper
 
-import dev.givaldo.data_local.model.MovieEntity
+import dev.givaldo.data_local.model.entity.MovieEntity
 import dev.givaldo.domain.model.Movie
 
 object MovieMapper : DataLocalMapper<MovieEntity, Movie> {
@@ -12,7 +12,6 @@ object MovieMapper : DataLocalMapper<MovieEntity, Movie> {
             description = remote.description,
             posterUrl = remote.posterPath
         )
-
     }
 
     override fun fromDomain(domain: Movie): MovieEntity {
@@ -22,7 +21,6 @@ object MovieMapper : DataLocalMapper<MovieEntity, Movie> {
             posterPath = domain.posterUrl,
             description = domain.description
         )
-
     }
 
 }
