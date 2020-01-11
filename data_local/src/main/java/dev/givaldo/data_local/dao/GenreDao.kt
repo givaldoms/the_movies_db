@@ -5,19 +5,19 @@ import dev.givaldo.data_local.model.entity.GenreEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface GenreDao {
+abstract class GenreDao {
 
     @Query(GET_ALL_QUERY)
-    fun getAll(): Flow<List<GenreEntity>>
+    abstract fun getAll(): Flow<List<GenreEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(genres: GenreEntity): Long
+    abstract suspend fun insert(genres: GenreEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(genres: List<GenreEntity>): List<Long>
+    abstract suspend fun insertAll(genres: List<GenreEntity>): List<Long>
 
     @Delete
-    suspend fun deleteAll(genres: List<GenreEntity>)
+    abstract suspend fun deleteAll(genres: List<GenreEntity>)
 
     companion object {
         private const val GET_ALL_QUERY = "SELECT * FROM ${GenreEntity.TABLE_NAME}"

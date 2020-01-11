@@ -11,9 +11,9 @@ fun <D> flowApi(
         emit(call())
     } catch (httpException: HttpException) {
         println("Request error [HttpException] -> ${httpException.message}")
-        throw httpException.parseError()
+        throw parseError()
     } catch (ioException: IOException) {
-        println("Request error [IllegalStateException] -> ${ioException.message}")
+        println("Request error [IOException] -> ${ioException.message}")
         throw InternetErrorException()
     } catch (stateException: IllegalStateException) {
         println("Request error [IllegalStateException] -> ${stateException.message}")
@@ -22,7 +22,7 @@ fun <D> flowApi(
 }
 
 
-fun HttpException.parseError(): Throwable {
+fun parseError(): Throwable {
 //    val error = response().errorBody()?.string()?.let { it.parseJson<HashMap<String, String>>(it) }
     return DataSourceException(
         message = ErrorMessageEnum.GENERIC_ERROR.value

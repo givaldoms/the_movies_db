@@ -4,15 +4,16 @@ ext {
             [configuration: "testImplementation", dependency: "$koinTest"]
     ]
 
+
     androidTestCommonsDependencies = testCommonsDependencies + [
             [configuration: "androidTestRuntimeOnly", dependency: "$androidJunitRunner"],
+            [configuration: "androidTestImplementation", dependency: "$androidMockk"],
             [configuration: "androidTestImplementation", dependency: "$androidJunit"],
             [configuration: "androidTestImplementation", dependency: "$junit"],
             [configuration: "androidTestImplementation", dependency: "$roomTesting"],
             [configuration: "androidTestImplementation", dependency: "$androidTestRunner"],
             [configuration: "androidTestImplementation", dependency: "$androidCoreTest"]
     ]
-
     testAppDependencies = androidTestCommonsDependencies
 
     testPresentationDependencies = androidTestCommonsDependencies

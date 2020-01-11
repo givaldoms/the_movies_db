@@ -1,25 +1,29 @@
 package dev.givaldo.data.repository
 
-import dev.givaldo.data.datasource.local.MovieLocalDataSource
+import dev.givaldo.data.datasource.local.GenreLocalDataSource
 import dev.givaldo.data.datasource.remote.GenreRemoteDataSource
 import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.repository.GenreRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 
 class GenreRepositoryImpl(
     private val remote: GenreRemoteDataSource,
-    private val local: MovieLocalDataSource
+    private val local: GenreLocalDataSource
 ) : GenreRepository {
 
     @ExperimentalCoroutinesApi
-    @FlowPreview
-    override fun getGenres(): Flow<List<Genre>> = flow {
-        //TODO offline first behavior: listener local storage and update it with remote web service. obs: chanel must handle about all errors
-        emitAll(remote.getGenres())
-    }
+    override fun getGenres(): Flow<List<Genre>> =
+        flow {
+            emitAll(local.getGenres().distinctUntilChanged())
+            remote.getGenres().take(1)
+                .catch {
+                    throw it
+                }.collect {
+                    local.saveGenres(it)
+                    emit(it)
+                }
+        }
 
 }
+

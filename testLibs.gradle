@@ -17,6 +17,8 @@ ext {
 
     kotlinTest                = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     mockk                     = "io.mockk:mockk:$mockkVersion"
+    androidMockk              = "io.mockk:mockk-android:$mockkVersion"
+
     koinTest                  = "org.koin:koin-test:$koinVersion"
     robolectric               = "org.robolectric:robolectric:$robolectricVersion"
 

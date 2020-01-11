@@ -19,6 +19,7 @@ interface MovieDao {
     @Delete
     fun deleteAll(movies: List<MovieEntity>)
 
+
     companion object {
         private const val GET_ALL_QUERY = "SELECT * FROM ${MovieEntity.TABLE_NAME}"
     }

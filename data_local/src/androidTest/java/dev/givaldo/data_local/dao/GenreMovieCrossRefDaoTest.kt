@@ -51,7 +51,48 @@ class GenreMovieCrossRefDaoTest {
     }
 
     @Test
-    fun givenAMovieListAndAGenreReturnsAgenreMovieCrossRefList() = runBlocking {
+    fun givenAMovieListAndAGenreListGetMoviesWithGenteReturnsMovieCrossRefList() = runBlocking {
+        val movies = MovieEntityFactory.makeDumbList()
+        val movies1 = MovieEntityFactory.makeDumbList()
+
+        val genre = GenreEntityFactory.dumbInstance()
+        val genre1 = GenreEntityFactory.dumbInstance()
+
+        val genreMovieCrossRefList = GenreMovieCrossRefFactory.makeDumbList(genre, movies)
+        val genreMovieCrossRefList1 = GenreMovieCrossRefFactory.makeDumbList(genre1, movies1)
+
+        val genreWithMovies = GenreWithMovies(genre, movies)
+        val genreWithMovies1 = GenreWithMovies(genre1, movies1)
+
+        movieDao.insertAll(movies + movies1)
+        genreDao.insertAll(listOf(genre, genre1))
+
+        val ids = genreMovieCressRefDao.insertGenreWithMovies(
+            *genreMovieCrossRefList.toTypedArray()
+        )
+
+        Assertions.assertTrue(ids.none { it == -1L })
+
+        val ids1 = genreMovieCressRefDao.insertGenreWithMovies(
+            *genreMovieCrossRefList1.toTypedArray()
+        )
+
+        Assertions.assertTrue(ids1.none { it == -1L })
+
+        genreMovieCressRefDao.getMoviesWithGenre(genre.genreId).test {
+            Assertions.assertEquals(genreWithMovies, it)
+        }
+
+        genreMovieCressRefDao.getMoviesWithGenre(genre1.genreId).test {
+            Assertions.assertEquals(genreWithMovies1, it)
+        }
+        genreMovieCressRefDao.getMoviesWithGenre(genre1.genreId).test {
+            Assertions.assertNotEquals(genreWithMovies, it)
+        }
+    }
+
+    @Test
+    fun givenAMovieListAndAGenreReturnsMovieCrossRefList() = runBlocking {
         val movies = MovieEntityFactory.makeDumbList()
         val genre = GenreEntityFactory.dumbInstance()
         val genreMovieCrossRefList = GenreMovieCrossRefFactory.makeDumbList(genre, movies)

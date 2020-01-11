@@ -1,11 +1,13 @@
 package dev.givaldo.di
 
+import dev.givaldo.data.datasource.local.GenreLocalDataSource
 import dev.givaldo.data.datasource.local.MovieLocalDataSource
 import dev.givaldo.data.datasource.remote.GenreRemoteDataSource
 import dev.givaldo.data.datasource.remote.MovieRemoteDataSource
 import dev.givaldo.data.repository.GenreRepositoryImpl
 import dev.givaldo.data.repository.MovieRepositoryImpl
 import dev.givaldo.data_local.core.AppDatabase
+import dev.givaldo.data_local.datasource.GenreLocalDataSourceImpl
 import dev.givaldo.data_local.datasource.MovieLocalDataSourceImpl
 import dev.givaldo.data_remote.datasource.GenreRemoteDataSourceImpl
 import dev.givaldo.data_remote.datasource.MovieRemoteDataSourceImpl
@@ -41,8 +43,14 @@ val dataModule = module {
     single {
         MovieLocalDataSourceImpl(
             movieDao = get(),
-            genreDao = get()
+            movieCrossRefDao = get()
         ) as MovieLocalDataSource
+    }
+
+    single {
+        GenreLocalDataSourceImpl(
+            genreDao = get()
+        ) as GenreLocalDataSource
     }
 
     single {
