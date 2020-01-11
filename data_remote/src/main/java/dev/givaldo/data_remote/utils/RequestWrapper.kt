@@ -1,23 +1,23 @@
 package dev.givaldo.data_remote.utils
 
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 
-suspend fun <D> requestWrapper(
+fun <D> flowApi(
     call: suspend () -> D
-): Flow<D> {
-    return flow {
-        try {
-            emit(call())
-        } catch (httpException: HttpException) {
-            throw httpException.parseError()
-        } catch (ioException: IOException) {
-            throw InternetErrorException()
-        } catch (stateException: IllegalStateException) {
-            throw ServerErrorException()
-        }
+) = flow {
+    try {
+        emit(call())
+    } catch (httpException: HttpException) {
+        println("Request error [HttpException] -> ${httpException.message}")
+        throw httpException.parseError()
+    } catch (ioException: IOException) {
+        println("Request error [IllegalStateException] -> ${ioException.message}")
+        throw InternetErrorException()
+    } catch (stateException: IllegalStateException) {
+        println("Request error [IllegalStateException] -> ${stateException.message}")
+        throw ServerErrorException()
     }
 }
 
