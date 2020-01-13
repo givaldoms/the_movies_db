@@ -19,9 +19,13 @@ interface MovieDao {
     @Delete
     fun deleteAll(movies: List<MovieEntity>)
 
+    @Query(GET_ALL_MOVIES_WITH_QUERY)
+    fun getMoviesByQuery(query: String): Flow<List<MovieEntity>>
 
     companion object {
         private const val GET_ALL_QUERY = "SELECT * FROM ${MovieEntity.TABLE_NAME}"
+        private const val GET_ALL_MOVIES_WITH_QUERY =
+            "SELECT * FROM ${MovieEntity.TABLE_NAME} WHERE title LIKE :query"
     }
 
 }

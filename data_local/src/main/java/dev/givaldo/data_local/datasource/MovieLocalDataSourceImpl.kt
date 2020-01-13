@@ -16,7 +16,16 @@ class MovieLocalDataSourceImpl(
 
     override fun getMovies(genreId: Long): Flow<List<Movie>> {
         return movieCrossRefDao.getMoviesByGenre(genreId)
-            .map { MovieMapper.toDomain(it) }
+            .map {
+                MovieMapper.toDomain(it)
+            }
+    }
+
+    override fun getMovies(query: String): Flow<List<Movie>> {
+        return movieDao.getMoviesByQuery(query)
+            .map {
+                MovieMapper.toDomain(it)
+            }
     }
 
     override fun saveMovies(list: List<Movie>): Flow<List<Movie>> {
