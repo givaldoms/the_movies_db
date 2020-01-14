@@ -14,8 +14,8 @@ class GetMovies(
 
     override fun run(params: Params?): Flow<List<Movie>> = when {
         params == null -> throw MissingParamsException()
-        params.genre != null -> movieRepository.getMovies(params.genre.id, params.page)
-        params.query != null && params.query.isNotBlank() -> movieRepository.getMovies(
+        params.genre != null -> movieRepository.getMoviesByGenre(params.genre.id, params.page)
+        params.query != null && params.query.isNotBlank() -> movieRepository.getMoviesQuery(
             params.query,
             params.page
         )

@@ -34,6 +34,10 @@ val dataModule = module {
     }
 
     single {
+        get<AppDatabase>().genreMovieCressRefDao()
+    }
+
+    single {
         WebServiceFactory.createWebService<MovieWebService>()
     }
     single {

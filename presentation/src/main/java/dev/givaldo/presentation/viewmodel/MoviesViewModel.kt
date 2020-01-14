@@ -9,8 +9,12 @@ import dev.givaldo.presentation.mapper.GenreBindingMapper
 import dev.givaldo.presentation.mapper.MoviePresentationMapper
 import dev.givaldo.presentation.model.GenreBinding
 import dev.givaldo.presentation.model.MovieBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -31,7 +35,8 @@ class MoviesViewModel(
         fetchMovies()
     }
 
-    fun fetchMovies() = viewModelScope.launch {
+    @ExperimentalCoroutinesApi
+    fun fetchMovies() = viewModelScope.launch(Dispatchers.IO) {
         getMovies(
             params = GetMovies.Params(
                 genre = GenreBindingMapper.toDomain(genre),
@@ -40,10 +45,12 @@ class MoviesViewModel(
         ).map {
             currentPage++
             MoviePresentationMapper.fromDomain(it)
-        }.collect {
+        }.catch {
+            _moviesLiveData.postValue(Result.failure(it))
+        }.onEach {
             movieList.addAll(it)
-            _moviesLiveData.value = Result.success(movieList)
-        }
+            _moviesLiveData.postValue(Result.success(movieList))
+        }.collect()
     }
 
 }

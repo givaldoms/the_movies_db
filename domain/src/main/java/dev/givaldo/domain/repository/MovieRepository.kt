@@ -5,12 +5,12 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {
 
-    fun getMovies(
+    fun getMoviesByGenre(
         genreId: Long,
         page: Int
     ): Flow<List<Movie>>
 
-    fun getMovies(
+    fun getMoviesQuery(
         query: String,
         page: Int
     ): Flow<List<Movie>>

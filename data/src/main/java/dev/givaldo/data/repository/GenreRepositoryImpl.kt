@@ -5,6 +5,7 @@ import dev.givaldo.data.datasource.remote.GenreRemoteDataSource
 import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.repository.GenreRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
 
 class GenreRepositoryImpl(
@@ -12,18 +13,19 @@ class GenreRepositoryImpl(
     private val local: GenreLocalDataSource
 ) : GenreRepository {
 
+    @FlowPreview
     @ExperimentalCoroutinesApi
-    override fun getGenres(): Flow<List<Genre>> =
-        flow {
-            emitAll(local.getGenres().distinctUntilChanged())
-            remote.getGenres().take(1)
-                .catch {
-                    throw it
-                }.collect {
+    override fun getGenres(): Flow<List<Genre>> = flow {
+        local.getGenres().distinctUntilChanged()
+            .onEach {
+                emit(it)
+            }
+            .flatMapConcat {
+                remote.getGenres().flatMapConcat {
                     local.saveGenres(it)
-                    emit(it)
                 }
-        }
-
+            }
+            .collect()
+    }
 }
 
