@@ -15,20 +15,43 @@ interface GenreMovieCrossRefDao {
     suspend fun insertGenreWithMovies(vararg items: GenreMovieCrossRef): List<Long>
 
     @Query(GET_ALL_QUERY)
-    fun getGenreWithMovies(): Flow<List<GenreWithMovies>>
+    fun getAllGenreWithMovies(): Flow<List<GenreWithMovies>>
 
-    @Query(GET_ALL_FROM_A_GENRE)
-    fun getMoviesWithGenre(genreId: Long): Flow<GenreWithMovies>
+    @Query(GET_ALL_BY_GENRE)
+    fun getMoviesWithGenreByGenreId(genreId: Long): Flow<GenreWithMovies>
 
     @Transaction
-    fun getMoviesByGenre(genreId: Long): Flow<List<MovieEntity>> = getMoviesWithGenre(genreId)
-        .map {
-            it.movies
-        }
+    fun getMoviesByGenreId(genreId: Long): Flow<List<MovieEntity>> =
+        getMoviesWithGenreByGenreId(genreId)
+            .map {
+                it.movies
+            }
+
+    @Transaction
+    suspend fun insertMoviesByGenres(
+        movieDao: MovieDao,
+        genreDao: GenreDao,
+        movies: List<MovieEntity>, genres: List<GenreEntity>
+    ) {
+
+        movieDao.insertAll(movies)
+        genreDao.insertAll(genres)
+
+        val a: List<GenreMovieCrossRef> = movies.map { m ->
+            genres.map { g ->
+                GenreMovieCrossRef(
+                    movieId = m.movieId,
+                    genreId = g.genreId
+                )
+            }
+        }.flatten()
+
+        insertGenreWithMovies(*a.toTypedArray())
+    }
 
     companion object {
         private const val GET_ALL_QUERY = "SELECT * FROM ${GenreEntity.TABLE_NAME}"
-        private const val GET_ALL_FROM_A_GENRE =
+        private const val GET_ALL_BY_GENRE =
             "SELECT * FROM ${GenreEntity.TABLE_NAME} WHERE genreId = :genreId LIMIT 1"
     }
 }

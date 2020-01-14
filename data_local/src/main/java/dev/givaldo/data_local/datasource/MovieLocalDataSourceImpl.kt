@@ -14,14 +14,14 @@ class MovieLocalDataSourceImpl(
     private val movieCrossRefDao: GenreMovieCrossRefDao
 ) : MovieLocalDataSource {
 
-    override fun getMovies(genreId: Long): Flow<List<Movie>> {
-        return movieCrossRefDao.getMoviesByGenre(genreId)
+    override fun getMoviesByGenre(genreId: Long): Flow<List<Movie>> {
+        return movieCrossRefDao.getMoviesByGenreId(genreId)
             .map {
                 MovieMapper.toDomain(it)
             }
     }
 
-    override fun getMovies(query: String): Flow<List<Movie>> {
+    override fun getMoviesByQuery(query: String): Flow<List<Movie>> {
         return movieDao.getMoviesByQuery(query)
             .map {
                 MovieMapper.toDomain(it)

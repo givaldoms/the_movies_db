@@ -8,6 +8,7 @@ import dev.givaldo.data_local.factory.MovieEntityFactory
 import dev.givaldo.data_local.factory.PrimitiveDataFactory
 import dev.givaldo.data_local.model.entity.MovieEntity
 import dev.givaldo.data_local.utils.test
+import dev.givaldo.domain.model.Movie
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.*
@@ -37,7 +38,7 @@ class MovieDaoTest {
     }
 
     @Test
-    fun givenAEmptyListReturnsEmpty() = runBlocking {
+    fun givenAEmptyListGetAllReturnsEmpty() = runBlocking {
         val movies = MovieEntityFactory.makeDumbList(0)
 
         movieDao.getAll().test {
@@ -58,7 +59,7 @@ class MovieDaoTest {
     }
 
     @Test
-    fun givenAMovieListAndDeleteHerReturnsEmpty() = runBlocking {
+    fun givenAMovieListAndDeleteItReturnsEmpty() = runBlocking {
         val movies = MovieEntityFactory.makeDumbList().sortedBy { it.movieId }
 
         val ids = movieDao.insertAll(movies)
@@ -72,7 +73,7 @@ class MovieDaoTest {
     }
 
     @Test
-    fun givenAExitingMovieListDatabaseValuesAreReplaced() = runBlocking {
+    fun givenAExitingMovieListInsertDatabaseValuesAreReplaced() = runBlocking {
         val movies = MovieEntityFactory.makeDumbList().sortedBy { it.movieId }
         val newMovies = movies.map {
             it.copy(
@@ -86,11 +87,48 @@ class MovieDaoTest {
         val ids = movieDao.insertAll(movies)
         Assertions.assertTrue(ids.none { it == -1L })
 
-        val newids = movieDao.insertAll(newMovies)
-        Assertions.assertTrue(newids.none { it == -1L })
+        val newIds = movieDao.insertAll(newMovies)
+        Assertions.assertTrue(newIds.none { it == -1L })
 
         movieDao.getAll().test {
             Assertions.assertIterableEquals(it, newMovies)
+        }
+    }
+
+    @Test
+    fun givenAMovieListGetMoviesByQueryReturnsTheMovieList() = runBlocking {
+        val movies = MovieEntityFactory.makeDumbList().sortedBy { it.movieId }
+        val query = movies.first().title.substring(2, 6)
+        val queryMovies = movies.filter { it.title.contains(query) }
+
+        val ids = movieDao.insertAll(movies)
+        Assertions.assertTrue(ids.none { it == -1L })
+
+        movieDao.getMoviesByQuery(query).test {
+            Assertions.assertIterableEquals(queryMovies, it)
+        }
+    }
+
+    @Test
+    fun givenAMovieListGetMoviesByEmptyQueryReturnsAllMovies() = runBlocking {
+        val movies = MovieEntityFactory.makeDumbList().sortedBy { it.movieId }
+        val query = ""
+
+        val ids = movieDao.insertAll(movies)
+        Assertions.assertTrue(ids.none { it == -1L })
+
+        movieDao.getMoviesByQuery(query).test {
+            Assertions.assertIterableEquals(movies, it)
+        }
+    }
+
+    @Test
+    fun givenAEmptyListGetMoviesByQueryReturnsAEmptyList() = runBlocking {
+        val queryMovies = listOf<Movie>()
+        val query = PrimitiveDataFactory.makeDumbString()
+
+        movieDao.getMoviesByQuery(query).test {
+            Assertions.assertIterableEquals(queryMovies, it)
         }
     }
 

@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieLocalDataSource {
 
-    fun getMovies(genreId: Long): Flow<List<Movie>>
+    fun getMoviesByGenre(genreId: Long): Flow<List<Movie>>
 
-    fun getMovies(query: String): Flow<List<Movie>>
+    fun getMoviesByQuery(query: String): Flow<List<Movie>>
 
     fun saveMovies(list: List<Movie>): Flow<List<Movie>>
 

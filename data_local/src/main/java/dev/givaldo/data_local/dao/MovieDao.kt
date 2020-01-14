@@ -25,7 +25,7 @@ interface MovieDao {
     companion object {
         private const val GET_ALL_QUERY = "SELECT * FROM ${MovieEntity.TABLE_NAME}"
         private const val GET_ALL_MOVIES_WITH_QUERY =
-            "SELECT * FROM ${MovieEntity.TABLE_NAME} WHERE title LIKE :query"
+            "SELECT * FROM ${MovieEntity.TABLE_NAME} WHERE title LIKE '%' || :query || '%'"
     }
 
 }
