@@ -11,11 +11,11 @@ class MovieRemoteDataSourceImpl(
     private val movieWebService: MovieWebService
 ) : MovieRemoteDataSource {
 
-    override fun getMovies(genreId: Long, page: Int): Flow<List<Movie>> = flowApi {
+    override fun getMoviesByGenre(genreId: Long, page: Int): Flow<List<Movie>> = flowApi {
         MovieMapper.toDomain(movieWebService.getMovieList(genreId, page).movies)
     }
 
-    override fun getMovies(query: String, page: Int): Flow<List<Movie>> = flowApi {
+    override fun getMoviesByQuery(query: String, page: Int): Flow<List<Movie>> = flowApi {
         MovieMapper.toDomain(movieWebService.getMovieSearchList(query, page).movies)
     }
 

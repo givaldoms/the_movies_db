@@ -1,4 +1,4 @@
-package dev.givaldo.domain.interactor.movie
+package dev.givaldo.domain.interactor.genres
 
 import dev.givaldo.domain.core.UseCase
 import dev.givaldo.domain.model.Genre
@@ -11,6 +11,8 @@ class GetGenres(
 
     override fun run(params: Unit?): Flow<List<Genre>> {
         return genreRepository.getGenres()
+//            .map {
+//                listOf(it.first())
+//            }
     }
 }
-

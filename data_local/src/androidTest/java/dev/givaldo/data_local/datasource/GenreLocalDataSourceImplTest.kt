@@ -15,7 +15,6 @@ import org.junit.jupiter.api.TestInstance
 
 @ExperimentalCoroutinesApi
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-
 internal class GenreLocalDataSourceImplTest {
 
     private val dumbGenreList = GenreEntityFactory.makeDumbList()
@@ -38,7 +37,6 @@ internal class GenreLocalDataSourceImplTest {
                 Assertions.assertIterableEquals(it, domainGenreList)
             }
     }
-
 
     @Test
     fun saveGenresReturnsError() {

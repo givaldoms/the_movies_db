@@ -13,7 +13,7 @@ fun <T> Flow<T>.asLiveData(): LiveData<Result<T>> = liveData {
             emit(Result.success(it))
         }
     } catch (e: Exception) {
-        emit(Result.failure(e))
+        emit(Result.failure<T>(e))
     }
 }
 

@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface MovieRemoteDataSource {
 
-    fun getMovies(genreId: Long, page: Int): Flow<List<Movie>>
+    fun getMoviesByGenre(genreId: Long, page: Int): Flow<List<Movie>>
 
-    fun getMovies(query: String, page: Int): Flow<List<Movie>>
+    fun getMoviesByQuery(query: String, page: Int): Flow<List<Movie>>
 
 }

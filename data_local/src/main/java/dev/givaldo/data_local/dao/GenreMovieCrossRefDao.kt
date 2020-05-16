@@ -14,9 +14,11 @@ interface GenreMovieCrossRefDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertGenreWithMovies(vararg items: GenreMovieCrossRef): List<Long>
 
+    @Transaction
     @Query(GET_ALL_QUERY)
     fun getAllGenreWithMovies(): Flow<List<GenreWithMovies>>
 
+    @Transaction
     @Query(GET_ALL_BY_GENRE)
     fun getMoviesWithGenreByGenreId(genreId: Long): Flow<GenreWithMovies>
 

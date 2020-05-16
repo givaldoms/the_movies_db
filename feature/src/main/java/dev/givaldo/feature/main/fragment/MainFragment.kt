@@ -20,6 +20,7 @@ import dev.givaldo.presentation.model.MovieBinding
 import dev.givaldo.presentation.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment(), MoviesFragmentListener {
@@ -66,6 +67,7 @@ class MainFragment : Fragment(), MoviesFragmentListener {
         else -> super.onOptionsItemSelected(item)
     }
 
+    @ExperimentalCoroutinesApi
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -85,5 +87,4 @@ class MainFragment : Fragment(), MoviesFragmentListener {
             moviesPageAdapter.fragments = it
         }
     }
-
 }

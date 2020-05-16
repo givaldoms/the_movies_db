@@ -35,7 +35,8 @@
         tools:layout="@layout/fragment_movie_search">
         <action
             android:id="@+id/action_movieSearchFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
 </navigation>

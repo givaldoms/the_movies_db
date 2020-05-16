@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.givaldo.domain.interactor.movie.GetMovies
+import dev.givaldo.domain.interactor.movie.GetMoviesByGenre
 import dev.givaldo.presentation.mapper.GenreBindingMapper
 import dev.givaldo.presentation.mapper.MoviePresentationMapper
 import dev.givaldo.presentation.model.GenreBinding
@@ -19,11 +19,12 @@ import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
+@ExperimentalCoroutinesApi
 class MoviesViewModel(
     private val genre: GenreBinding
 ) : ViewModel(), KoinComponent {
 
-    private val getMovies: GetMovies by inject()
+    private val getMoviesByQuery: GetMoviesByGenre by inject()
     private var currentPage = 1
 
     private var movieList = mutableListOf<MovieBinding>()
@@ -35,10 +36,9 @@ class MoviesViewModel(
         fetchMovies()
     }
 
-    @ExperimentalCoroutinesApi
     fun fetchMovies() = viewModelScope.launch(Dispatchers.IO) {
-        getMovies(
-            params = GetMovies.Params(
+        getMoviesByQuery(
+            params = GetMoviesByGenre.Params(
                 genre = GenreBindingMapper.toDomain(genre),
                 page = currentPage
             )

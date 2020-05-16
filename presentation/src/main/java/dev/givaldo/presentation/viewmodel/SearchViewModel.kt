@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.givaldo.domain.interactor.movie.GetMovies
+import dev.givaldo.domain.interactor.movie.GetMoviesByQuery
 import dev.givaldo.presentation.mapper.MoviePresentationMapper
 import dev.givaldo.presentation.model.MovieBinding
 import kotlinx.coroutines.flow.collect
@@ -15,7 +15,7 @@ import org.koin.core.inject
 
 class SearchViewModel : ViewModel(), KoinComponent {
 
-    private val getMovies: GetMovies by inject()
+    private val getMoviesByQuery: GetMoviesByQuery by inject()
     private var currentPage = 1
     private var currentQuery: String = ""
 
@@ -25,15 +25,13 @@ class SearchViewModel : ViewModel(), KoinComponent {
     val moviesLiveData: LiveData<Result<List<MovieBinding>>> = _moviesLiveData
 
     fun fetchMovies(query: String) {
-
         if (query.isBlank()) return
         currentQuery = query
 
         viewModelScope.launch {
-            getMovies(
-                params = GetMovies.Params(
-                    query = query,
-                    genre = null
+            getMoviesByQuery(
+                params = GetMoviesByQuery.Params(
+                    query = query
                 )
             ).map {
                 currentPage++

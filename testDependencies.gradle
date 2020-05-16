@@ -1,7 +1,8 @@
 ext {
     testCommonsDependencies = [
             [configuration: "testImplementation", dependency: "$mockk"],
-            [configuration: "testImplementation", dependency: "$koinTest"]
+            [configuration: "testImplementation", dependency: "$koinTest"],
+            [configuration: "testImplementation", dependency: "$junit"],
     ]
 
 

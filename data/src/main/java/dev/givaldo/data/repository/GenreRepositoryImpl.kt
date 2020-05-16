@@ -6,7 +6,9 @@ import dev.givaldo.domain.model.Genre
 import dev.givaldo.domain.repository.GenreRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onStart
 
 class GenreRepositoryImpl(
     private val remote: GenreRemoteDataSource,
@@ -15,17 +17,16 @@ class GenreRepositoryImpl(
 
     @FlowPreview
     @ExperimentalCoroutinesApi
-    override fun getGenres(): Flow<List<Genre>> = flow {
-        local.getGenres().distinctUntilChanged()
-            .onEach {
-                emit(it)
-            }
-            .flatMapConcat {
-                remote.getGenres().flatMapConcat {
-                    local.saveGenres(it)
-                }
-            }
-            .collect()
-    }
+    override fun getGenres(): Flow<List<Genre>> = local.getGenres()
+        .combine(remote.getGenres().withDefaultValue()) { l, r ->
+            local.saveGenres(r)
+            l
+        }
+
 }
 
+
+@ExperimentalCoroutinesApi
+fun <T> Flow<List<T>>.withDefaultValue() = onStart {
+    emit(listOf())
+}
